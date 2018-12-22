@@ -4,6 +4,7 @@ import ButtonHeader from './button-header'
 import ViewHeader from './view-header';
 import ViewDescription from './view-description';
 import MenuButton from './menu-button';
+import { BACKGROUD_COLOR } from '../styles/common';
 
 export default class MainMenu extends React.Component {
 
@@ -12,20 +13,29 @@ export default class MainMenu extends React.Component {
     }
 
     render() {
-        return <View style={styles.menuButton}>
+        return <View style={styles.menuContainer}>
             <ViewHeader text="Language gainer"></ViewHeader>
             <ViewDescription text="Welcome Mariusz, what do you want to do today?"></ViewDescription>
             <MenuButton></MenuButton>
-            <Button color="#47525E" title="Sign out" onPress={this.testFunc}></Button>
+            <MenuButton></MenuButton>
+            <MenuButton></MenuButton>
+            <View style={styles.signOutButton}>
+                <Button color="#47525E" title="Sign out" onPress={this.testFunc}></Button>
+            </View>
         </View>
     }
 }
 
 const styles = StyleSheet.create({
-    menuButton: {
-        backgroundColor: '#F9F7F7',
+    menuContainer: {
+        backgroundColor: BACKGROUD_COLOR,
         flex: 1,
         flexDirection: 'column',
         alignSelf: 'stretch'
+    },
+    signOutButton: {
+        marginBottom: 31,
+        paddingLeft: 38,
+        paddingRight: 38
     }
 });
