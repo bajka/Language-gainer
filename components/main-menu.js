@@ -6,6 +6,7 @@ import ViewDescription from './view-description';
 import MenuButton from './menu-button';
 import { BACKGROUD_COLOR } from '../styles/common';
 import Images from '../assets/images';
+import firebase from 'firebase';
 
 export default class MainMenu extends React.Component {
 
@@ -19,7 +20,11 @@ export default class MainMenu extends React.Component {
         console.log('createCourse');
     }
     signOut = () => {
-        console.log('signOut');
+        firebase.auth().signOut().then(() => {
+            this.props.navigation.navigate('Login');
+        }, (error) => {
+            console.error('Sign Out Error', error);
+        });
     }
 
     render() {

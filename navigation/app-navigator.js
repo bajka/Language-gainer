@@ -1,12 +1,14 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import MainMenu from '../components/main-menu';
+import LoginPage from '../components/login-page';
 
 const AppNavigator = createStackNavigator(
     {
         Home: MainMenu,
+        Login: LoginPage
     },
     {
-        initialRouteName: "Home",
+        initialRouteName: "Login",
         headerMode: 'none' 
     });
 
