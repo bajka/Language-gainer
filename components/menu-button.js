@@ -1,18 +1,21 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import ButtonHeader from './button-header';
 import ButtonText from './button-text';
 import { PRIMARY_COLOR } from '../styles/common';
 
 export default class MenuButton extends React.Component {
+
     render() {
-        return <View style={styles.mainContainer}>
-            <ButtonHeader text={this.props.headerText}></ButtonHeader>
-            <View style={styles.descriptionPart}>
-                <ButtonText text={this.props.description}></ButtonText>
-                <Image style={styles.image} source={this.props.image}></Image>
+        return <TouchableWithoutFeedback onPress={this.props.click}>
+            <View style={styles.mainContainer}>
+                <ButtonHeader text={this.props.headerText}></ButtonHeader>
+                <View style={styles.descriptionPart}>
+                    <ButtonText text={this.props.description}></ButtonText>
+                    <Image style={styles.image} source={this.props.image}></Image>
+                </View>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     }
 }
 
@@ -22,7 +25,7 @@ const styles = StyleSheet.create({
         marginLeft: 36,
         marginRight: 36,
         marginBottom: 15,
-        borderRadius:10,
+        borderRadius: 10,
         backgroundColor: PRIMARY_COLOR
     },
     image: {
