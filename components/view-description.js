@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableWithoutFeedback } from 'react-native';
 import { BACKGROUD_TEXT_COLOR } from '../styles/common';
 
-const ViewDescription = ({ text }) => {
+const ViewDescription = ({ text, onPress }) => {
     const styles = {
         view: {
             alignItems: 'center',
@@ -19,7 +19,7 @@ const ViewDescription = ({ text }) => {
         }
     };
 
-    return <View style={styles.view}><Text style={styles.text}>{text}</Text></View>;
+    return <TouchableWithoutFeedback  onPress={onPress}><View style={styles.view}><Text style={styles.text}>{text}</Text></View></TouchableWithoutFeedback>;
 };
 
 ViewDescription.defaultProps = { text: '' };
