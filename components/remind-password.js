@@ -1,20 +1,20 @@
 import React from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Button, StyleSheet } from 'react-native';
 import ViewHeader from './view-header';
 import { BACKGROUD_COLOR, BACKGROUD_TEXT_COLOR } from '../styles/common';
 import firebase from 'firebase';
 import ErrorText from './error-text';
-import ViewDescription from './view-description';
 import CustomInput from './custom-input';
+import ViewDescription from './view-description';
 
-export default class LoginPage extends React.Component {
+export default class RemindPassword extends React.Component {
 
-    state = { email: '', password: '', error: '' };
+    state = { email: '', error: '' };
 
-    signin = () => {
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+    remindPassword = () => {
+        firebase.auth().sendPasswordResetEmail(this.state.email)
             .then(() => {
-                this.props.navigation.navigate('Home');
+                this.props.navigation.navigate('Login');
                 this.setState({ error: '' });
             })
             .catch((error) => this.setState({ error: error.message }));        
@@ -23,19 +23,15 @@ export default class LoginPage extends React.Component {
     render() {
         return <View style={styles.loginContainer}>
             <View>
-                <ViewHeader style={styles.title} text='Sign in' />
+                <ViewHeader style={styles.title} text='Type your email' />
                 <ErrorText errorText={this.state.error}/>
                 <View style={styles.controlPadding}>
                     <CustomInput placeholder='Email' value={this.state.email} onChangeText={email => this.setState({ email })} />
                 </View>
                 <View style={styles.controlPadding}>
-                    <CustomInput secureTextEntry={true} placeholder='Password' password={this.state.password} onChangeText={password => this.setState({ password })} />
+                    <Button title='Remind password' onPress={this.remindPassword} color={BACKGROUD_TEXT_COLOR} />
                 </View>
-                <View style={styles.controlPadding}>
-                    <Button title='Sign in' onPress={this.signin} color={BACKGROUD_TEXT_COLOR} />
-                </View>
-                <ViewDescription text='Forgot password' onPress={() => this.props.navigation.navigate('NewPassword')}/>
-                <ViewDescription text='Create account' onPress={() => this.props.navigation.navigate('NewAccount')}/>
+                <ViewDescription text='Back to login page' onPress={() => this.props.navigation.navigate('Login')}/>
             </View>
         </View>
     }
