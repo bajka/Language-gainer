@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { BACKGROUD_TEXT_COLOR } from '../styles/common';
+import { BACKGROUD_TEXT_COLOR } from '../../styles/common';
 
 const ViewHeader = ({ text }) => {
     const styles = {

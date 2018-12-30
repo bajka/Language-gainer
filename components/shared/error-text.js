@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { ERROR_COLOR } from '../styles/common';
+import { ERROR_COLOR } from '../../styles/common';
 
 const ErrorText = ({ errorText }) => {
     const styles = {

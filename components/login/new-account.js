@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Button, StyleSheet } from 'react-native';
-import ViewHeader from './view-header';
-import { BACKGROUD_COLOR, BACKGROUD_TEXT_COLOR } from '../styles/common';
 import firebase from 'firebase';
-import ErrorText from './error-text';
-import CustomInput from './custom-input';
-import ViewDescription from './view-description';
+import ViewHeader from '../shared/view-header';
+import ErrorText from '../shared/error-text';
+import CustomInput from '../shared/custom-input';
+import ViewDescription from '../shared/view-description';
+import { BACKGROUD_COLOR, BACKGROUD_TEXT_COLOR } from '../../styles/common';
 
 export default class NewAccount extends React.Component {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
-import { BACKGROUD_TEXT_COLOR } from '../styles/common';
+import { BACKGROUD_TEXT_COLOR } from '../../styles/common';
 
 const ViewDescription = ({ text, onPress }) => {
     const styles = {

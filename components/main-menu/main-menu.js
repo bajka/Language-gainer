@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
-import ButtonHeader from './button-header'
-import ViewHeader from './view-header';
-import ViewDescription from './view-description';
-import MenuButton from './menu-button';
-import { BACKGROUD_COLOR } from '../styles/common';
-import Images from '../assets/images';
 import firebase from 'firebase';
+import ViewHeader from '../shared/view-header';
+import ViewDescription from '../shared/view-description';
+import MenuButton from './menu-button';
+import { BACKGROUD_COLOR } from '../../styles/common';
+import Images from '../../assets/images';
+
 
 export default class MainMenu extends React.Component {
 

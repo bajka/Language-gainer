@@ -2,7 +2,8 @@ import React from 'react';
 import { View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import ButtonHeader from './button-header';
 import ButtonText from './button-text';
-import { PRIMARY_COLOR } from '../styles/common';
+import { PRIMARY_COLOR } from '../../styles/common';
+import RoundedImage from '../shared/rounded-image';
 
 export default class MenuButton extends React.Component {
 
@@ -12,7 +13,7 @@ export default class MenuButton extends React.Component {
                 <ButtonHeader text={this.props.headerText}></ButtonHeader>
                 <View style={styles.descriptionPart}>
                     <ButtonText text={this.props.description}></ButtonText>
-                    <Image style={styles.image} source={this.props.image}></Image>
+                    <RoundedImage image={this.props.image} />
                 </View>
             </View>
         </TouchableWithoutFeedback>

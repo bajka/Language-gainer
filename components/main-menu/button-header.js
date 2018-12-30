@@ -1,20 +1,18 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { BACKGROUD_COLOR } from '../styles/common';
+import { BACKGROUD_COLOR } from '../../styles/common';
 
-const ButtonText = ({ text }) => {
+const ButtonHeader = ({ text }) => {
     const styles = {
         textContainer: {
             paddingLeft: 16,
             paddingRight: 16,
             paddingTop: 8,
-            paddingBottom: 8,
-            flex: 1,
-            justifyContent: 'flex-end'
+            paddingBottom: 8
         },
         text: {
             color: BACKGROUD_COLOR,
-            fontSize: 13,
+            fontSize: 17,
             fontWeight: '400'
         }
     };
@@ -26,6 +24,6 @@ const ButtonText = ({ text }) => {
     </View>;
 };
 
-ButtonText.defaultProps = { text: '' };
+ButtonHeader.defaultProps = { text: '' };
 
-export default ButtonText;
+export default ButtonHeader;
