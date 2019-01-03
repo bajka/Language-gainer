@@ -11,10 +11,11 @@ const AppNavigator = createStackNavigator(
         Login: LoginPage,
         NewPassword: RemindPassword,
         NewAccount: NewAccount,
-        LearnWord: WordLearnView
+        LearnWord: WordLearnView,
+        Quiz: MainMenu
     },
     {
-        initialRouteName: "LearnWord",
+        initialRouteName: "Login",
         headerMode: 'none' 
     });
 

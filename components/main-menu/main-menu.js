@@ -10,9 +10,6 @@ import Images from '../../assets/images';
 
 export default class MainMenu extends React.Component {
 
-    practiseWords = () => {
-        console.log('practiseWords');
-    }
     openPodcastsList = () => {
         console.log('openPodcastsList');
     }
@@ -31,7 +28,7 @@ export default class MainMenu extends React.Component {
         return <View style={styles.menuContainer}>
             <ViewHeader text="Language gainer"></ViewHeader>
             <ViewDescription text="Welcome Mariusz, what do you want to do today?"></ViewDescription>
-            <MenuButton headerText='Practise words' description='Practise most  important words in chosen language' image={Images.languages} click={this.practiseWords}></MenuButton>
+            <MenuButton headerText='Practise words' description='Practise most  important words in chosen language' image={Images.languages}  click={() => this.props.navigation.navigate('LearnWord')}></MenuButton>
             <MenuButton headerText='Deep dive into language' description='Listen podcast and read texts in chosen language' image={Images.diving} click={this.openPodcastsList}></MenuButton>
             <MenuButton headerText='Create own course' description='Share your knowledge with other people' image={Images.creating} click={this.createCourse}></MenuButton>
             <View style={styles.signOutButton}>
