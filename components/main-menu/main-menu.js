@@ -1,18 +1,15 @@
 import React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
-import ButtonHeader from './button-header'
-import ViewHeader from './view-header';
-import ViewDescription from './view-description';
-import MenuButton from './menu-button';
-import { BACKGROUD_COLOR } from '../styles/common';
-import Images from '../assets/images';
 import firebase from 'firebase';
+import ViewHeader from '../shared/view-header';
+import ViewDescription from '../shared/view-description';
+import MenuButton from './menu-button';
+import { BACKGROUD_COLOR } from '../../styles/common';
+import Images from '../../assets/images';
+
 
 export default class MainMenu extends React.Component {
 
-    practiseWords = () => {
-        console.log('practiseWords');
-    }
     openPodcastsList = () => {
         console.log('openPodcastsList');
     }
@@ -31,7 +28,7 @@ export default class MainMenu extends React.Component {
         return <View style={styles.menuContainer}>
             <ViewHeader text="Language gainer"></ViewHeader>
             <ViewDescription text="Welcome Mariusz, what do you want to do today?"></ViewDescription>
-            <MenuButton headerText='Practise words' description='Practise most  important words in chosen language' image={Images.languages} click={this.practiseWords}></MenuButton>
+            <MenuButton headerText='Practise words' description='Practise most  important words in chosen language' image={Images.languages}  click={() => this.props.navigation.navigate('LearnWord')}></MenuButton>
             <MenuButton headerText='Deep dive into language' description='Listen podcast and read texts in chosen language' image={Images.diving} click={this.openPodcastsList}></MenuButton>
             <MenuButton headerText='Create own course' description='Share your knowledge with other people' image={Images.creating} click={this.createCourse}></MenuButton>
             <View style={styles.signOutButton}>

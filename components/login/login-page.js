@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
-import ViewHeader from './view-header';
-import { BACKGROUD_COLOR, BACKGROUD_TEXT_COLOR } from '../styles/common';
+import { View, Button, StyleSheet } from 'react-native';
 import firebase from 'firebase';
-import ErrorText from './error-text';
-import ViewDescription from './view-description';
-import CustomInput from './custom-input';
+import ViewHeader from '../shared/view-header';
+import ErrorText from '../shared/error-text';
+import ViewDescription from '../shared/view-description';
+import CustomInput from '../shared/custom-input';
+import { BACKGROUD_COLOR, BACKGROUD_TEXT_COLOR } from '../../styles/common';
 
 export default class LoginPage extends React.Component {
 
