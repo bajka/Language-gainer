@@ -13,13 +13,14 @@ export default class WordLearnView extends React.Component {
     constructor(props) {
         super(props);
         this.state = { words: null };
+        this.lessonWordsIds = [];
         this.firestore = firebase.firestore();
         this.firestore.settings({ timestampsInSnapshots: true });
         // firebase.auth().signInWithEmailAndPassword('bajka.mariusz@gmail.com', 'c34ac12321')
         //     .then(() => {
-                this.getNewWords();
-            // })
-            // .catch((error) => this.setState({ error: error.message }));
+        this.getNewWords();
+        // })
+        // .catch((error) => this.setState({ error: error.message }));
     }
 
     async getNewWords() {
@@ -39,6 +40,7 @@ export default class WordLearnView extends React.Component {
                 const splice = querySnapshot.docs.slice(querySnapshot.docs.length - 3);
                 const wordList = [];
                 splice.forEach(doc => {
+                    this.lessonWordsIds.push(doc.id);
                     wordList.push(doc.data());
                 });
                 this.setState({ words: wordList });
@@ -64,7 +66,7 @@ export default class WordLearnView extends React.Component {
                 </View>
             </View>
             <View style={styles.quizButton}>
-                <Button color={BACKGROUD_TEXT_COLOR} title="Start quiz!" onPress={() => this.props.navigation.navigate('Quiz')}></Button>
+                <Button color={BACKGROUD_TEXT_COLOR} title="Start quiz!" onPress={() => this.props.navigation.navigate('Quiz', { lessonWordsIds: this.lessonWordsIds })}></Button>
             </View>
         </View>
     }
