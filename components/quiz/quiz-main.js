@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Button, Text, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Button, Text } from 'react-native';
 import firebase from 'firebase';
 import { BACKGROUD_COLOR, BACKGROUD_TEXT_COLOR, PRIMARY_COLOR, SECONDARY_COLOR } from '../../styles/common';
 import ContentText from '../shared/content-text';
 import ContentHeader from '../shared/content-header';
+import AnswerBlock from './answer-block';
+import ButtonNavigation from '../shared/button-navigation';
 
 export default class QuizMain extends React.Component {
 
@@ -42,17 +44,15 @@ export default class QuizMain extends React.Component {
         return <View style={styles.menuContainer}>
             <View style={styles.contentBackground}>
                 <View style={styles.header}>
-                    {currentQuizCursor > 0 ? <TouchableWithoutFeedback onPress={() => this.selectQuestion(-1)}><Text style={styles.quizNavigation}>Back</Text></TouchableWithoutFeedback> : null}
+                    <ButtonNavigation onPress={() => this.selectQuestion(-1)} text='Back' showButton={currentQuizCursor > 0} />
                     <ContentHeader style={styles.contentHeader} text={quizes ? `Question ${currentQuizCursor + 1}/${quizes.length}` : ''} />
-                    {quizes && currentQuizCursor < quizes.length - 1 ?<TouchableWithoutFeedback onPress={() => this.selectQuestion(1)}><Text style={styles.quizNavigation}>Next</Text></TouchableWithoutFeedback> : null}
+                    <ButtonNavigation onPress={() => this.selectQuestion(1)} text='Next' showButton={quizes && currentQuizCursor < quizes.length - 1} />
                 </View>
                 <ContentText text={currentQuiz && currentQuiz.question} />
                 <View style={styles.answersContainer}>
                     {
-                        currentQuiz ? currentQuiz.answers.map((elem, id) =>
-                            <View style={styles.answerWrap} key={id}>
-                                <Text style={styles.answer}>{`${elem.answer}`}</Text>
-                            </View>)
+                        currentQuiz ?
+                            currentQuiz.answers.map((elem, id) => <AnswerBlock answer={elem.answer} id={id} key={id} />)
                             : <View style={styles.loadingMessage}><Text>Loading...</Text></View>
                     }
                 </View>
@@ -92,18 +92,6 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         flexDirection: 'column',
         justifyContent: 'center'
-    },
-    answerWrap: {
-        backgroundColor: BACKGROUD_COLOR,
-        height: 34,
-        justifyContent: 'center',
-        paddingLeft: 13,
-        paddingRight: 13,
-        marginTop: 13
-    },
-    answer: {
-        color: BACKGROUD_TEXT_COLOR,
-        fontSize: 15
     },
     loadingMessage: {
         flex: 1,
