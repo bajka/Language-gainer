@@ -58,7 +58,7 @@ export default class QuizMain extends React.Component {
                     }
                 </View>
             </View>
-            <BottomButton buttonText="Confirm anwers" navigateEndpoint='Quiz' navigateData={{ lessonWordsIds: this.lessonWordsIds }}/>
+            <BottomButton buttonText="Confirm anwers" onPress={() => this.props.navigation.navigate('Quiz', { lessonWordsIds: this.lessonWordsIds })}/>
         </View>
     }
 }

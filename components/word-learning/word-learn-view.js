@@ -6,6 +6,7 @@ import RoundedImage from '../shared/rounded-image';
 import Images from '../../assets/images';
 import ContentText from '../shared/content-text';
 import ContentHeader from '../shared/content-header';
+import BottomButton from '../shared/bottom-button';
 
 
 export default class WordLearnView extends React.Component {
@@ -65,9 +66,7 @@ export default class WordLearnView extends React.Component {
                     }
                 </View>
             </View>
-            <View style={styles.quizButton}>
-                <Button color={BACKGROUD_TEXT_COLOR} title="Start quiz!" onPress={() => this.props.navigation.navigate('Quiz', { lessonWordsIds: this.lessonWordsIds })}></Button>
-            </View>
+            <BottomButton buttonText='Start quiz!' onPress={() => this.props.navigation.navigate('Quiz', { lessonWordsIds: this.lessonWordsIds })}/>
         </View>
     }
 }
