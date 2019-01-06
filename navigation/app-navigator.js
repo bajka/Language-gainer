@@ -13,7 +13,8 @@ const AppNavigator = createStackNavigator(
         NewPassword: RemindPassword,
         NewAccount: NewAccount,
         LearnWord: WordLearnView,
-        Quiz: QuizMain
+        Quiz: QuizMain,
+        QuizResult: QuizMain
     },
     {
         initialRouteName: "Login",
