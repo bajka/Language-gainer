@@ -6,6 +6,7 @@ import ContentText from '../shared/content-text';
 import ContentHeader from '../shared/content-header';
 import AnswerBlock from './answer-block';
 import ButtonNavigation from '../shared/button-navigation';
+import BottomButton from '../shared/bottom-button';
 
 export default class QuizMain extends React.Component {
 
@@ -52,14 +53,12 @@ export default class QuizMain extends React.Component {
                 <View style={styles.answersContainer}>
                     {
                         currentQuiz ?
-                            currentQuiz.answers.map((elem, id) => <AnswerBlock answer={elem.answer} id={id} key={id} />)
+                            currentQuiz.answers.map((elem, index) => <AnswerBlock answer={elem.answer} key={index} />)
                             : <View style={styles.loadingMessage}><Text>Loading...</Text></View>
                     }
                 </View>
             </View>
-            <View style={styles.quizButton}>
-                <Button color={BACKGROUD_TEXT_COLOR} title="Confirm anwers" onPress={() => this.props.navigation.navigate('Quiz', { lessonWordsIds: this.lessonWordsIds })}></Button>
-            </View>
+            <BottomButton buttonText="Confirm anwers" navigateEndpoint='Quiz' navigateData={{ lessonWordsIds: this.lessonWordsIds }}/>
         </View>
     }
 }
@@ -80,14 +79,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 23
     },
-    quizButton: {
-        marginTop: 34
-    },
-    imageStyles: {
-        width: 204,
-        height: 136,
-        marginTop: -39
-    },
     answersContainer: {
         alignSelf: 'stretch',
         flexDirection: 'column',
@@ -105,8 +96,5 @@ const styles = StyleSheet.create({
     contentHeader: {
         flex: 1,
         alignItems: 'center'
-    },
-    quizNavigation: {
-        color: BACKGROUD_COLOR
     }
 });
