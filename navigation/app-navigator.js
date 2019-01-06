@@ -4,6 +4,7 @@ import LoginPage from '../components/login/login-page';
 import RemindPassword from '../components/login/remind-password';
 import NewAccount from '../components/login/new-account';
 import WordLearnView from '../components/word-learning/word-learn-view';
+import QuizMain from '../components/quiz/quiz-main';
 
 const AppNavigator = createStackNavigator(
     {
@@ -12,7 +13,8 @@ const AppNavigator = createStackNavigator(
         NewPassword: RemindPassword,
         NewAccount: NewAccount,
         LearnWord: WordLearnView,
-        Quiz: MainMenu
+        Quiz: QuizMain,
+        QuizResult: QuizMain
     },
     {
         initialRouteName: "Login",

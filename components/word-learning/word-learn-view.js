@@ -6,6 +6,8 @@ import RoundedImage from '../shared/rounded-image';
 import Images from '../../assets/images';
 import ContentText from '../shared/content-text';
 import ContentHeader from '../shared/content-header';
+import BottomButton from '../shared/bottom-button';
+import WordBlock from './word-block';
 
 
 export default class WordLearnView extends React.Component {
@@ -13,13 +15,14 @@ export default class WordLearnView extends React.Component {
     constructor(props) {
         super(props);
         this.state = { words: null };
+        this.lessonWordsIds = [];
         this.firestore = firebase.firestore();
         this.firestore.settings({ timestampsInSnapshots: true });
         // firebase.auth().signInWithEmailAndPassword('bajka.mariusz@gmail.com', 'c34ac12321')
         //     .then(() => {
-                this.getNewWords();
-            // })
-            // .catch((error) => this.setState({ error: error.message }));
+        this.getNewWords();
+        // })
+        // .catch((error) => this.setState({ error: error.message }));
     }
 
     async getNewWords() {
@@ -39,6 +42,7 @@ export default class WordLearnView extends React.Component {
                 const splice = querySnapshot.docs.slice(querySnapshot.docs.length - 3);
                 const wordList = [];
                 splice.forEach(doc => {
+                    this.lessonWordsIds.push(doc.id);
                     wordList.push(doc.data());
                 });
                 this.setState({ words: wordList });
@@ -55,17 +59,12 @@ export default class WordLearnView extends React.Component {
                 <View style={styles.wordsContainer}>
                     {
                         words ?
-                            words.map((word, id) =>
-                                <View style={styles.wordWrap} key={id}>
-                                    <Text style={styles.word}>{`${word.originalWord} - ${word.translation}`}</Text>
-                                </View>)
+                            words.map((word, index) => <WordBlock word={word} key={index} />)
                             : <View style={styles.loadingMessage}><Text>Loading...</Text></View>
                     }
                 </View>
             </View>
-            <View style={styles.quizButton}>
-                <Button color={BACKGROUD_TEXT_COLOR} title="Start quiz!" onPress={() => this.props.navigation.navigate('Quiz')}></Button>
-            </View>
+            <BottomButton buttonText='Start quiz!' onPress={() => this.props.navigation.navigate('Quiz', { lessonWordsIds: this.lessonWordsIds })} />
         </View>
     }
 }
@@ -102,19 +101,6 @@ const styles = StyleSheet.create({
         marginTop: 22,
         flexDirection: 'column',
         padding: 7
-    },
-    wordWrap: {
-        backgroundColor: SECONDARY_COLOR,
-        flex: 1,
-        margin: 7,
-        borderRadius: 11,
-        justifyContent: 'center',
-        paddingLeft: 25,
-        paddingRight: 25
-    },
-    word: {
-        color: BACKGROUD_COLOR,
-        fontSize: 15
     },
     loadingMessage: {
         flex: 1,

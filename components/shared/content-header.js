@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { BACKGROUD_COLOR } from '../../styles/common';
 
-const ContentHeader = ({ text }) => {
+const ContentHeader = ({ text, style }) => {
     const styles = {
         textContainer: {
             paddingTop: 8,
@@ -15,7 +15,7 @@ const ContentHeader = ({ text }) => {
         }
     };
 
-    return <View style={styles.textContainer}>
+    return <View style={[styles.textContainer, style]}>
         <Text style={styles.text}>
             {text}
         </Text>
