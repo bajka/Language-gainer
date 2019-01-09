@@ -18,16 +18,13 @@ export default class WordLearnView extends React.Component {
         this.lessonWordsIds = [];
         this.firestore = firebase.firestore();
         this.firestore.settings({ timestampsInSnapshots: true });
-        // firebase.auth().signInWithEmailAndPassword('bajka.mariusz@gmail.com', 'c34ac12321')
-        //     .then(() => {
         this.getNewWords();
-        // })
-        // .catch((error) => this.setState({ error: error.message }));
     }
 
     async getNewWords() {
         const completedWords = await this.getCurrentWordProgress();
         this.addWordsToViewVariable(completedWords);
+        this.changeAmountOfCompletedWords(completedWords);
     }
 
     async getCurrentWordProgress() {
@@ -47,6 +44,13 @@ export default class WordLearnView extends React.Component {
                 });
                 this.setState({ words: wordList });
             });
+    }
+
+    changeAmountOfCompletedWords(currentCompletedWords) {
+        const currentUser = firebase.auth().currentUser;
+        this.firestore.collection(`progresses`).doc(`${currentUser.uid}`).set({
+            completedWordCount: currentCompletedWords + 3
+        }, {merge: true});
     }
 
     render() {

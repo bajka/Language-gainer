@@ -7,9 +7,17 @@ import RoundedImage from '../shared/rounded-image';
 
 export default class MenuButton extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.disabled = {};
+        if (props.disabled) {
+            this.disabled = {opacity: 0.5};
+        }
+    }
+
     render() {
         return <TouchableWithoutFeedback onPress={this.props.click}>
-            <View style={styles.mainContainer}>
+            <View style={styles.mainContainer} {...this.disabled}>
                 <ButtonHeader text={this.props.headerText}></ButtonHeader>
                 <View style={styles.descriptionPart}>
                     <ButtonText text={this.props.description}></ButtonText>
