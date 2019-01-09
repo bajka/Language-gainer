@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Button, Text } from 'react-native';
-import firebase from 'firebase';
-import { BACKGROUD_COLOR, BACKGROUD_TEXT_COLOR, PRIMARY_COLOR, SECONDARY_COLOR } from '../../styles/common';
+import { StyleSheet, View, Text } from 'react-native';
+import { BACKGROUD_COLOR, CONTRAST_COLOR, PRIMARY_COLOR } from '../../styles/common';
 import RoundedImage from '../shared/rounded-image';
 import Images from '../../assets/images';
 import ContentText from '../shared/content-text';
@@ -14,6 +13,7 @@ export default class QuizResult extends React.Component {
     constructor(props) {
         super(props);
         const { navigation } = this.props;
+        this.result = navigation.getParam('result', []);
     }
 
     render() {
@@ -22,8 +22,9 @@ export default class QuizResult extends React.Component {
                 <RoundedImage image={Images.target} additionalStyles={styles.imageStyles} />
                 <ContentHeader text='Well done!' />
                 <ContentText text='You are much closer to achive your main goal which is beeing fluent in spanish.' />
-                <View style={styles.wordsContainer}>
-                    
+                <View style={styles.result}>
+                    <ContentHeader style={styles.resultHeader} text='Your result is:' />
+                    <ContentText text={`${this.result.earnedPoints} points for a maximum of ${this.result.maximumPoints}!`} />
                 </View>
             </View>
             <BottomButton buttonText='Back to menu' onPress={() => this.props.navigation.navigate('Home')} />
@@ -55,18 +56,23 @@ const styles = StyleSheet.create({
         height: 136,
         marginTop: -39
     },
-    wordsContainer: {
-        backgroundColor: BACKGROUD_COLOR,
+    result: {
+        backgroundColor: CONTRAST_COLOR,
         borderRadius: 11,
         flex: 1,
         alignSelf: 'stretch',
         marginTop: 22,
         flexDirection: 'column',
-        padding: 7
+        padding: 7,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     loadingMessage: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    resultHeader: {
+        marginBottom: 20
     }
 });

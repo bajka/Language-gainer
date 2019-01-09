@@ -47,7 +47,7 @@ export default class QuizMain extends React.Component {
             earnedPoints: correctAnswers.length,
             maximumPoints: quizes.length
         };
-        this.props.navigation.navigate('QuizResult', result);
+        this.props.navigation.navigate('QuizResult', {result: result});
     }
 
     render() {
@@ -65,8 +65,11 @@ export default class QuizMain extends React.Component {
                 <View style={styles.answersContainer}>
                     {
                         currentQuiz ?
-                            currentQuiz.answers.map((elem, index) => <AnswerBlock answer={elem.answer} key={index} onClick={() => { elem.selected = !elem.selected; this.selectQuestion(); }} selected={elem.selected} />)
-                            : <View style={styles.loadingMessage}><Text>Loading...</Text></View>
+                            currentQuiz.answers.map(
+                                (elem, index) => <AnswerBlock answer={elem.answer} key={index}
+                                    onClick={() => { elem.selected = !elem.selected; this.selectQuestion(); }}
+                                    selected={elem.selected} />
+                            ) : <View style={styles.loadingMessage}><Text>Loading...</Text></View>
                     }
                 </View>
             </View>
