@@ -8,6 +8,7 @@ import QuizMain from '../components/quiz/quiz-main';
 import QuizResult from '../components/quiz/quiz-result';
 import CourseMenu from '../components/course-creator/course-menu';
 import NewWord from './../components/course-creator/new-words';
+import WordsList from '../components/course-creator/words-list';
 
 const AppNavigator = createStackNavigator(
     {
@@ -19,7 +20,8 @@ const AppNavigator = createStackNavigator(
         Quiz: QuizMain,
         QuizResult: QuizResult,
         CourseMenu: CourseMenu,
-        AddWords: NewWord
+        AddWords: NewWord,
+        WordsList: WordsList
     },
     {
         initialRouteName: "Login",

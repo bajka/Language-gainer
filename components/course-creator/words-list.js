@@ -1,27 +1,26 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { BACKGROUD_COLOR, CONTRAST_COLOR, PRIMARY_COLOR } from '../../styles/common';
-import RoundedImage from '../shared/rounded-image';
-import Images from '../../assets/images';
+import { BACKGROUD_COLOR, PRIMARY_COLOR } from '../../styles/common';
 import ContentText from '../shared/content-text';
 import ContentHeader from '../shared/content-header';
-import CourseMenuButton from './course-menu-button';
 import BottomButton from '../shared/bottom-button';
+import CustomInput from '../shared/custom-input';
+import firebase from 'firebase';
 
 
-export default class CourseMenu extends React.Component {
+export default class WordsList extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = { newWord: null };
+        this.firestore = firebase.firestore();
+        this.firestore.settings({ timestampsInSnapshots: true });
     }
 
     render() {
         return <View style={styles.menuContainer}>
             <View style={styles.contentBackground}>
-                <ContentHeader text='Create course'/>
-                <CourseMenuButton text='Add word/words' image={Images.word} click={() => this.props.navigation.navigate('AddWords')}/>
-                <CourseMenuButton text='Preview words list' image={Images.words} click={() => this.props.navigation.navigate('WordsList')}/>
-                <CourseMenuButton text='Add podcast' image={Images.ytLink} disabled={true}/>
+                <ContentHeader text='List of added words'/>
             </View>
         </View>
     }
