@@ -20,6 +20,7 @@ export default class NewAccount extends React.Component {
             .then(() => {
                 this.props.navigation.navigate('Login');
                 this.setState({ error: '' });
+                // TODO: initialize user progress in db
             })
             .catch((error) => this.setState({ error: error.message }));        
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput } from 'react-native';
 
-const CustomInput = ({ editable, placeholder, onChangeText, ...rest }) => {
+const CustomInput = ({ editable, placeholder, additionalStyle, onChangeText, ...rest }) => {
     const styles = {
         inputStyle: {
             height: 50,
@@ -11,7 +11,7 @@ const CustomInput = ({ editable, placeholder, onChangeText, ...rest }) => {
         }
     };
 
-    return <TextInput {...rest} editable={editable} style={styles.inputStyle} placeholder={placeholder} placeholderTextColor='#8190A5' onChangeText={onChangeText} />;
+    return <TextInput {...rest} editable={editable} style={[styles.inputStyle, additionalStyle]} placeholder={placeholder} placeholderTextColor='#8190A5' onChangeText={onChangeText} />;
 };
 
 CustomInput.defaultProps = {

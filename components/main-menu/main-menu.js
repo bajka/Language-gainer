@@ -27,7 +27,7 @@ export default class MainMenu extends React.Component {
             <ViewDescription text="Welcome Mariusz, what do you want to do today?"></ViewDescription>
             <MenuButton headerText='Practise words' description='Practise most  important words in chosen language' image={Images.languages} click={() => this.props.navigation.navigate('LearnWord')}></MenuButton>
             <MenuButton headerText='Deep dive into language' description='Listen podcast and read texts in chosen language' image={Images.diving} disabled={true}></MenuButton>
-            <MenuButton headerText='Create own course' description='Share your knowledge with other people' image={Images.creating} click={this.createCourse}></MenuButton>
+            <MenuButton headerText='Create own course' description='Share your knowledge with other people' image={Images.creating} click={() => this.props.navigation.navigate('CourseMenu')}></MenuButton>
             <View style={styles.signOutButton}>
                 <Button color="#47525E" title="Sign out" onPress={this.signOut}></Button>
             </View>
