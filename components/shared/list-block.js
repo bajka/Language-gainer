@@ -3,7 +3,7 @@ import { Text, View, TouchableWithoutFeedback, Image } from 'react-native';
 import { BACKGROUD_COLOR, BACKGROUD_TEXT_COLOR } from '../../styles/common';
 import Images from '../../assets/images';
 
-const AnswerBlock = ({ answer, onClick, selected }) => {
+const ListBlock = ({ blockText, onClick, selected }) => {
     const styles = {
         answerWrap: {
             backgroundColor: BACKGROUD_COLOR,
@@ -29,7 +29,7 @@ const AnswerBlock = ({ answer, onClick, selected }) => {
     return (
         <TouchableWithoutFeedback onPress={onClick}>
             <View style={styles.answerWrap}>
-                <Text style={styles.answer}>{`${answer}`}</Text>
+                <Text style={styles.answer}>{`${blockText}`}</Text>
                 {
                     selected ? <Image style={styles.image} source={Images.confirmIcon}></Image>:null
                 }
@@ -38,6 +38,6 @@ const AnswerBlock = ({ answer, onClick, selected }) => {
     );
 };
 
-AnswerBlock.defaultProps = { answer: '' };
+ListBlock.defaultProps = { blockText: '' };
 
-export default AnswerBlock;
+export default ListBlock;
