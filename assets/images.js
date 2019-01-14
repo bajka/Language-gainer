@@ -7,7 +7,9 @@ const Images = {
     target: require('./pictures/target.jpg'),
     word: require('./pictures/word.jpg'),
     words: require('./pictures/words-content.jpg'),
-    ytLink: require('./pictures/yt-links.jpg')
+    ytLink: require('./pictures/yt-links.jpg'),
+    deleteIcon: require('./pictures/deleteIcon.png'),
+    addIcon: require('./pictures/addIcon.png')
 }
 
 export default Images;
