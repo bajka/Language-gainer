@@ -9,6 +9,12 @@ import { BACKGROUD_COLOR, BACKGROUD_TEXT_COLOR } from '../../styles/common';
 
 export default class NewAccount extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.firestore = firebase.firestore();
+        this.firestore.settings({ timestampsInSnapshots: true });
+    }
+
     state = { email: '', password_1: '', password_2: '', error: '' };
 
     createAccount = () => {
@@ -18,9 +24,15 @@ export default class NewAccount extends React.Component {
         }
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password_1)
             .then(() => {
+                const currentUser = firebase.auth().currentUser;
+                this.firestore.collection('progresses').doc(currentUser.uid)
+                .set({
+                    completedWordCount: 0,
+                    coursePoints: 0,
+                    maxCoursePoints: 0
+                });
                 this.props.navigation.navigate('Login');
                 this.setState({ error: '' });
-                // TODO: initialize user progress in db
             })
             .catch((error) => this.setState({ error: error.message }));        
     }

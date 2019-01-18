@@ -20,7 +20,7 @@ export default class CourseMenu extends React.Component {
             <View style={styles.contentBackground}>
                 <ContentHeader text='Create course'/>
                 <CourseMenuButton text='Add word/words' image={Images.word} click={() => this.props.navigation.navigate('AddWords')}/>
-                <CourseMenuButton text='Preview words list' image={Images.words} click={() => this.navigation.navigate('WordList')}/>
+                <CourseMenuButton text='Preview words list' image={Images.words} click={() => this.props.navigation.navigate('WordsList')}/>
                 <CourseMenuButton text='Add podcast' image={Images.ytLink} disabled={true}/>
             </View>
         </View>

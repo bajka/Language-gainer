@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Button, Text } from 'react-native';
 import firebase from 'firebase';
-import { BACKGROUD_COLOR, BACKGROUD_TEXT_COLOR, PRIMARY_COLOR, SECONDARY_COLOR } from '../../styles/common';
+import { BACKGROUD_COLOR, PRIMARY_COLOR } from '../../styles/common';
 import ContentText from '../shared/content-text';
 import ContentHeader from '../shared/content-header';
-import AnswerBlock from './answer-block';
+import ListBlock from '../shared/list-block';
 import ButtonNavigation from '../shared/button-navigation';
 import BottomButton from '../shared/bottom-button';
 
@@ -24,6 +24,10 @@ export default class QuizMain extends React.Component {
         for (wordId of lessonWordsIds) {
             const quizesSnapshot = await this.firestore.collection(`courses/default/words/${wordId}/quizes`).get()
             quizesSnapshot.forEach(quiz => quizList.push(quiz.data()));
+        }
+        if (!quizList || quizList.length === 0) {
+            this.props.navigation.navigate('Home');
+            return;
         }
         this.setState({ quizes: quizList });
         this.selectQuestion();
@@ -47,7 +51,7 @@ export default class QuizMain extends React.Component {
             earnedPoints: correctAnswers.length,
             maximumPoints: quizes.length
         };
-        this.props.navigation.navigate('QuizResult', {result: result});
+        this.props.navigation.navigate('QuizResult', { result: result });
     }
 
     render() {
@@ -66,7 +70,7 @@ export default class QuizMain extends React.Component {
                     {
                         currentQuiz ?
                             currentQuiz.answers.map(
-                                (elem, index) => <AnswerBlock answer={elem.answer} key={index}
+                                (elem, index) => <ListBlock blockText={elem.answer} key={index}
                                     onClick={() => { elem.selected = !elem.selected; this.selectQuestion(); }}
                                     selected={elem.selected} />
                             ) : <View style={styles.loadingMessage}><Text>Loading...</Text></View>
