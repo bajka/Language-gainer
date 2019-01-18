@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { BACKGROUD_COLOR } from '../../styles/common';
 
-const ContentText = ({ text }) => {
+const ContentText = ({ text, additionalStyle }) => {
     const styles = {
         text: {
             color: BACKGROUD_COLOR,
@@ -13,7 +13,7 @@ const ContentText = ({ text }) => {
     };
 
     return <View>
-        <Text style={styles.text}>
+        <Text style={[styles.text, additionalStyle]}>
             {text}
         </Text>
     </View>;

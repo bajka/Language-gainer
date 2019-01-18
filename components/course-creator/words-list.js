@@ -59,12 +59,18 @@ export default class WordsList extends React.Component {
         this.setState({ wordsList: listAfterDeletion, selected: [] });
     }
 
+    createNewQuiz() {
+        const selectedWordId = this.state.wordsList.find(elem => elem.selected).id;
+        console.log(selectedWordId);
+        this.props.navigation.navigate('NewQuiz', { selectedWordId });
+    }
+
     render() {
         const { wordsList } = this.state;
         const { selected } = this.state;
         return <View style={styles.menuContainer}>
             <View style={styles.buttonBar}>
-                <ButtonWithIcon show={selected.length == 1} text='Add quiz' iconPath={Images.addIcon} onPress={() => this.props.navigation.navigate('NewQuiz')} />
+                <ButtonWithIcon show={selected.length == 1} text='Add quiz' iconPath={Images.addIcon} onPress={() => this.createNewQuiz()} />
                 <ButtonWithIcon show={selected.length >= 1} text='Delete' iconPath={Images.deleteIcon} onPress={() => this.deleteSelectedWords()} />
             </View>
             <View style={styles.contentBackground}>
