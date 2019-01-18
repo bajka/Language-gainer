@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { BACKGROUD_TEXT_COLOR } from '../../styles/common';
 
 const ViewHeader = ({ text }) => {
     const styles = {
@@ -8,7 +9,7 @@ const ViewHeader = ({ text }) => {
             paddingTop: 15
         },
         text: {
-            color: '#47525E',
+            color: BACKGROUD_TEXT_COLOR,
             fontSize: 28,
             fontWeight: '300'
         }

@@ -1,22 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import MainMenu from './components/main-menu'
+import AppContainer from './navigation/app-navigator';
+import * as firebase from 'firebase';
+import '@firebase/firestore';
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <MainMenu></MainMenu>
-      </View>
+      <AppContainer />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+var config = {
+  apiKey: "AIzaSyCnKTZ87WmGqliPb6gx8DboPOhaPuZdBHg",
+  authDomain: "language-gainer.firebaseapp.com",
+  databaseURL: "https://language-gainer.firebaseio.com",
+  projectId: "language-gainer",
+  storageBucket: "language-gainer.appspot.com",
+  messagingSenderId: "748019215925"
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
+}
